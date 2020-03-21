@@ -14,6 +14,7 @@ rate_list = list(range(1, 10001))
 salary_too_low = False
 
 
+# offload the calculation of total savings to a function that takes savings_rate as a variable
 def calc_savings(salary, savings_rate, semi_annual_raise, r):
     savings_rate = float(savings_rate / 10000)
     savings = 0
@@ -38,10 +39,12 @@ while abs(current_error) > max_error and not(salary_too_low):
     current_error = current_savings - down_payment
 
     if(current_savings_rate == 10000):
+        # then the salary is too low to save enough
         print('It is not possible to pay the down payment in three years.')
         salary_too_low = True
 
     if abs(current_error) < max_error:
+        # then the savings rate is correct
         print('Best savings rate:' + str(current_savings_rate/10000))
         print('Steps in bisection search:' + str(step))
 
